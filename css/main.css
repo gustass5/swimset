@@ -19,24 +19,6 @@ video {
   left: 0;
 }
 
-main {
-  background: white;
-  position: relative;
-  padding: 1rem;
-  margin: 0 3rem;
-  margin-top: 100vh;
-}
-
-main::before {
-  content: "";
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  top: -100vh;
-}
-
 ul {
   list-style: none;
 }
@@ -49,7 +31,7 @@ ul {
 }
 
 .background-dim {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .absolute {
