@@ -6,20 +6,21 @@ const currentPasswordError = document.getElementById("current-password-error");
 const confirmPasswordError = document.getElementById("confirm-password-error");
 const form = document.getElementById("form");
 
-usernameInput.addEventListener("input", () => {
-  if (!checkUsernameValidation()) {
-    usernameError.innerHTML = "Please enter username!";
-  }
-});
+// usernameInput.addEventListener("input", () => {
+//   if (usernameInput.value === "" || usernameInput.value === undefined) {
+//     usernameError.innerHTML = "Please enter username!";
+//   }
 
-const checkUsernameValidation = () => {
-  if (usernameInput.value === "" || usernameInput.value === undefined) {
-    return false;
-  }
+// });
 
-  const trimmedUsername = usernameInput.value.trim();
-  if (/\s/.test(trimmedUsername)) {
-    return false;
-  }
-  return true;
-};
+// const checkUsernameValidation = () => {
+//   if (usernameInput.value === "" || usernameInput.value === undefined) {
+//     return false;
+//   }
+
+//   const trimmedUsername = usernameInput.value.trim();
+//   if (/\s/.test(trimmedUsername)) {
+//     return false;
+//   }
+//   return true;
+// };
