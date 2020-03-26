@@ -44,14 +44,27 @@ if(isset($_POST['register'])){
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
+        <script defer src="../js/register.js"></script>
     </head>
     <body>
         <h1>Register</h1>
-        <form action="register.php" method="post">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username"><br>
-            <label for="password">Password</label>
-            <input type="text" id="password" name="password"><br>
+        <form id="form" action="register.php" method="post">
+            <div>    
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+                <div id='username-error'></div>
+            </div>
+            <div>
+                <label for="current-password">Password</label>
+                <input type="password" id="current-password" name="current-password"><br>
+                <div id='current-password-error'></div>
+            </div>
+            <div>
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" id="confirm-password" name="confirm-password"><br>
+                <div id='confirm-password-error'></div>
+
+            </div>
             <input type="submit" name="register" value="Register"></button>
         </form>
     </body>
