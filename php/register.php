@@ -42,7 +42,7 @@ function validateNewUser(){
         $currentPasswordExceptions[] = 'Password must not have spaces';
     }
 
-    if(preg_match("/[^A-Za-z0-9]/", $currentPassword)){
+    if(preg_match('/[^A-Za-z0-9]/', $currentPassword)){
         $currentPasswordExceptions[] = 'Password can only contain letters and numbers';
     }
 
@@ -112,7 +112,7 @@ function addNewUser(){
 
     $passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-    $sql = "INSERT INTO users (username, password, role, administrator) VALUES (:username, :password, :role, :administrator)";
+    $sql = 'INSERT INTO users (username, password, role, administrator) VALUES (:username, :password, :role, :administrator)';
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindValue(':username', $username);
@@ -131,32 +131,39 @@ function addNewUser(){
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset='UTF-8'>
         <title>Register</title>
-        <script defer src="../js/register.js"></script>
+        <link rel='stylesheet' href='../css/main.css' />
+        <script defer src='../js/register.js'></script>
     </head>
     <body>
         <h1>Register</h1>
-        <form id="form" action="register.php" method="post">
-            <div>    
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username">
-                <div id='username-error'></div>
+        <form id='form' action='register.php' method='post'>
+            <div class='hidden'>    
+                <label for='username'>Username</label>
+                <input type='text' id='username' name='username'>
+                <div id='username-error' class='hidden'>
+                    <ul>
+                        <li id='username-error-1'>Please enter username</li>
+                        <li id='username-error-2'>Username must not have spaces</li>
+                        <li id='username-error-2'>Username already exist</li>
+                    </ul>
+                </div>
             </div>
             <div>
-                <label for="current-password">Password</label>
-                <input type="password" id="current-password" name="current-password"><br>
+                <label for='current-password'>Password</label>
+                <input type='password' id='current-password' name='current-password'><br>
                 <div id='current-password-error'></div>
             </div>
             <div>
-                <label for="confirm-password">Confirm password</label>
-                <input type="password" id="confirm-password" name="confirm-password"><br>
+                <label for='confirm-password'>Confirm password</label>
+                <input type='password' id='confirm-password' name='confirm-password'><br>
                 <div id='confirm-password-error'></div>
 
             </div>
             <div>
-                <label for="rule">What do you do?</label>
-                <select id="role" name='role'>
+                <label for='rule'>What do you do?</label>
+                <select id='role' name='role'>
                     <option value='developer'>Game developer</option>
                     <option value='designer'>Designer</option>
                     <option value='ilustrator'>Ilustrator</option>
@@ -166,7 +173,7 @@ function addNewUser(){
                     <option value='other'>Other</option>
                 </select>
             </div>
-            <input type="submit" name="register" value="Register">
+            <input type='submit' name='register' value='Register'>
         </form>
     </body>
 </html>
