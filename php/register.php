@@ -132,6 +132,18 @@ function addNewUser(){
                 <div id='confirm-password-error'></div>
 
             </div>
+            <div>
+                <label for="rule">What do you do?</label>
+                <select id="role" name='role'>
+                    <option value='developer'>Game developer</option>
+                    <option value='designer'>Designer</option>
+                    <option value='ilustrator'>Ilustrator</option>
+                    <option value='vfx'>Visual effects artist</option>
+                    <option value='editor'>Video editor</option>
+                    <option value='creator'>Level creator</option>
+                    <option value='other'>Other</option>
+                </select>
+            </div>
             <input type="submit" name="register" value="Register">
         </form>
     </body>
