@@ -139,21 +139,17 @@ function addNewUser(){
     <body>
         <h1>Register</h1>
         <form id='form' action='register.php' method='post'>
-            <div class='hidden'>    
+            <div>    
                 <label for='username'>Username</label>
                 <input type='text' id='username' name='username'>
                 <div id='username-error' class='hidden'>
-                    <ul>
-                        <li id='username-error-1'>Please enter username</li>
-                        <li id='username-error-2'>Username must not have spaces</li>
-                        <li id='username-error-2'>Username already exist</li>
-                    </ul>
                 </div>
             </div>
             <div>
                 <label for='current-password'>Password</label>
                 <input type='password' id='current-password' name='current-password'><br>
-                <div id='current-password-error'></div>
+                    <div id='current-password-error' class='hidden'></div>
+                </div>
             </div>
             <div>
                 <label for='confirm-password'>Confirm password</label>
