@@ -52,6 +52,10 @@ function validateNewUser(){
         $currentPasswordExceptions[] = 'Password must contain at least 1 number';
     }
 
+    if(strpos($currentPassword, $username) !== false){
+        $currentPasswordExceptions[] = 'Password must not contain username';
+    }
+
     if($confirmPassword === null){
         $confirmPasswordExceptions[] = 'Password confirmation was not provided';
     }
