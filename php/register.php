@@ -19,10 +19,12 @@ function validateNewUser(){
     $username = !empty(trim($_POST['username'])) ? trim($_POST['username']) : null;
     $currentPassword = !empty(trim($_POST['current-password'])) ? trim($_POST['current-password']) : null;
     $confirmPassword = !empty(trim($_POST['confirm-password'])) ? trim($_POST['confirm-password']) : null;
+    $role = !empty($_POST['role']) ? $_POST['role'] : null;
     
     $usernameExceptions = [];
     $currentPasswordExceptions = [];
     $confirmPasswordExceptions = [];
+    $roleExceptions = [];
 
     if($username === null){
         $usernameExceptions[] = 'Username was not provided';
@@ -64,8 +66,25 @@ function validateNewUser(){
         $confirmPasswordExceptions[] = 'Passwords do not match';
     }
 
-    if(count($usernameExceptions) > 0 || count($currentPasswordExceptions) > 0 || count($confirmPasswordExceptions) > 0){
-            echo '<div>'.$usernameExceptions[0].' - '.$currentPasswordExceptions[0].' - '.$confirmPasswordExceptions[0].'</div>';
+    if($role === null){
+        $roleExceptions[] = 'Role was not provided';
+    }
+
+    switch($role){
+        case 'developer':
+        case 'designer':
+        case 'ilustrator':
+        case 'vfx':
+        case 'editor':
+        case 'creator':
+        case 'other':
+            break;
+        default:
+        $roleExceptions[] = 'Invalid role was provided';
+    }
+
+    if(count($usernameExceptions) > 0 || count($currentPasswordExceptions) > 0 || count($confirmPasswordExceptions) > 0 || count($roleExceptions) > 0){
+            echo '<div>'.$usernameExceptions[0].' - '.$currentPasswordExceptions[0].' - '.$confirmPasswordExceptions[0].' '.$roleExceptions[0].' - '.'</div>';
         throw new Exception();
     }
 
@@ -73,9 +92,10 @@ function validateNewUser(){
 
 function addNewUser(){
     Global $pdo;
-    return;
+
     $username = trim($_POST['username']);
     $password = trim($_POST['current-password']);
+    $role = $_POST['role'];
 
     $sql = 'SELECT COUNT(username) AS num FROM users WHERE username = :username';
     $stmt = $pdo->prepare($sql);
@@ -92,11 +112,13 @@ function addNewUser(){
 
     $passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-    $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+    $sql = "INSERT INTO users (username, password, role, administrator) VALUES (:username, :password, :role, :administrator)";
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindValue(':username', $username);
     $stmt->bindValue(':password', $passwordHash);
+    $stmt->bindValue(':role', $role);
+    $stmt->bindValue(':administrator', 0);
 
     $result = $stmt->execute();
 
