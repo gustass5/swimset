@@ -4,7 +4,7 @@ session_start();
 
 require 'lib/password.php';
 
-require 'config.php';
+require '../core/config.php';
 
 if(isset($_POST['register'])){
     try{
@@ -122,7 +122,7 @@ function addNewUser(){
     $result = $stmt->execute();
 
     if($result){
-        echo 'Registered';
+        header('Location: ../index.php');
     }
 }
 ?>
@@ -133,42 +133,50 @@ function addNewUser(){
         <meta charset='UTF-8'>
         <title>Register</title>
         <link rel='stylesheet' href='../css/main.css' />
-        <script defer src='../js/register.js'></script>
+        <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
     </head>
     <body>
-        <h1>Register</h1>
-        <form id='form' action='register.php' method='post'>
-            <div>    
-                <label for='username'>Username</label>
-                <input type='text' id='username' name='username'>
-                <div id='username-error' class='hidden'>
-                </div>
-            </div>
-            <div>
-                <label for='current-password'>Password</label>
-                <input type='password' id='current-password' name='current-password'><br>
-                    <div id='current-password-error' class='hidden'></div>
-                </div>
-            </div>
-            <div>
-                <label for='confirm-password'>Confirm password</label>
-                <input type='password' id='confirm-password' name='confirm-password'><br>
-                <div id='confirm-password-error'></div>
+        <main class='flex h-screen items-center justify-center'>
+            <section class='flex flex-col px-4 py-2 bg-white shadow'>
+                <h1 class='mb-1'>Register</h1>
+                <form class='flex flex-col' id='form' action='register.php' method='post'>
+                    <div class='flex relative flex-col'>    
+                        <label class='mb-1' for='username'>Username</label>
+                        <input class='mb-1 text-lg' type='text' id='username' name='username'>
+                        <div id='username-error' class='floating-label hidden absolute error-label shadow'>
+                        </div>
+                    </div>
+                    <div class='flex relative flex-col floating-label-wrap'>
+                        <label class='mb-1' for='current-password'>Password</label>
+                        <input class='mb-1 text-lg' type='password' id='current-password' name='current-password'>
+                            <div id='current-password-error' class='floating-label hidden absolute error-label shadow'>
+                        </div>
+                    </div>
+                    <div class='flex relative flex-col floating-label-wrap'>
+                        <label class='mb-1' for='confirm-password'>Confirm password</label>
+                        <input class='mb-1 text-lg' type='password' id='confirm-password' name='confirm-password'>
+                        <div id='confirm-password-error' class='hidden absolute error-label shadow'></div>
 
-            </div>
-            <div>
-                <label for='rule'>What do you do?</label>
-                <select id='role' name='role'>
-                    <option value='developer'>Game developer</option>
-                    <option value='designer'>Designer</option>
-                    <option value='ilustrator'>Ilustrator</option>
-                    <option value='vfx'>Visual effects artist</option>
-                    <option value='editor'>Video editor</option>
-                    <option value='creator'>Level creator</option>
-                    <option value='other'>Other</option>
-                </select>
-            </div>
-            <input type='submit' name='register' value='Register'>
-        </form>
+                    </div>
+                    <div class='flex flex-col'>
+                        <label class='mb-1' for='rule'>What do you do?</label>
+                        <select class='mb-2' id='role' name='role'>
+                            <option value='developer'>Game developer</option>
+                            <option value='designer'>Designer</option>
+                            <option value='ilustrator'>Ilustrator</option>
+                            <option value='vfx'>Visual effects artist</option>
+                            <option value='editor'>Video editor</option>
+                            <option value='creator'>Level creator</option>
+                            <option value='other'>Other</option>
+                        </select>
+                    </div>
+                    <button class='p-1 bg-black text-white' type='submit' name='register'>Register</button>
+                </form>
+            </section>
+        </main>
+        <script src='../js/register.js'></script>
     </body>
 </html>
