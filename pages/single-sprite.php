@@ -113,7 +113,7 @@ $currentUser = fetchUserData($_SESSION['user_id']);
                 <button class='download-button' type='submit' name='download_sprite' class='p-1 mb-1'>Download</button>
             </form>
             <?php if(checkLoggedIn(false) && ($currentUser['administrator'] === 1 || $sprite['user_id'] === $currentUser['id'])){?>
-              <form action='../api/handle-sprite.php' method='post'>
+              <form id='delete-sprite-form' action='../api/handle-sprite.php' method='post'>
                   <input type='hidden' name='sprite_id' value="<?php echo htmlspecialchars($sprite['id'])?>">
                   <input type='hidden' name='author_id' value="<?php echo htmlspecialchars($author['id'])?>">
                   <button class='delete-button' type='submit' name='delete_sprite' class='p-1 mb-1'>Delete</button>
@@ -129,5 +129,6 @@ $currentUser = fetchUserData($_SESSION['user_id']);
         <?php }?>
     </main>
     <script src="../js/menu.js"></script>
+    <script src="../js/single-sprite.js"></script>
   </body>
 </html>

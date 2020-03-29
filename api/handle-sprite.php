@@ -38,6 +38,8 @@ if(isset($_POST['delete_sprite'])){
 
     if($spritePath){
       removeFromDatabase($spritePath['path']);
+    }else{
+      echo 'Sprite does not exist';
     }
 
 }
@@ -58,6 +60,8 @@ function removeFromDatabase($spritePath){
   }
 
   unlink($path);
+
+  header('Location: ../pages/sprites.php');
 }
 
 ?>
