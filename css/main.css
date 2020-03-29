@@ -16,15 +16,6 @@ a {
   text-decoration: none;
 }
 
-video {
-  object-fit: cover;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 button,
 input[type="submit"] {
   background: none;
@@ -45,10 +36,6 @@ ul {
   text-align: center;
   width: 100vw;
   height: 100vh;
-}
-
-.background-dim {
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .absolute {
@@ -206,6 +193,10 @@ ul {
   padding: 0 0.5rem;
 }
 
+.px-1 {
+  padding: 0 1rem;
+}
+
 .px-10 {
   padding: 0 10rem;
 }
@@ -339,6 +330,11 @@ ul {
 }
 
 .navigation-item:hover {
+  background-color: black;
+  color: white;
+}
+
+.search:hover {
   background-color: black;
   color: white;
 }
