@@ -1,6 +1,11 @@
 <?php
-if(isset($_POST['download'])){
-    $path = "../uploads/".$_POST['path'];
+session_start();
+
+require 'config.php';
+require 'helpers.php';
+
+if(isset($_POST['download_sprite'])){
+    $path = "../uploads/".basename($_POST['path']);
     
     if (file_exists($path)) {
         header('Content-Description: File Transfer');
@@ -14,4 +19,45 @@ if(isset($_POST['download'])){
         exit;
     }
 }
+
+if(isset($_POST['delete_sprite'])){
+    checkLoggedIn();
+    $currentUser = fetchUserData($_SESSION['user_id']);
+  
+    if($currentUser['administrator'] === 0 && $_POST['author_id'] !== $currentUser['id']){
+      echo 'You do not have permission to do that';
+      return;
+    }
+
+    $sql = 'SELECT path FROM sprites WHERE id = :sprite_id';
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(':sprite_id',  $_POST['sprite_id']);
+    $statement->execute();
+
+    $spritePath = $statement->fetch(FETCH_ASSOC);
+
+    if($spritePath){
+      removeFromDatabase($spritePath);
+    }
+
+}
+
+function removeFromDatabase($spritePath){
+  Global $pdo;
+  $path = "../uploads/".basename($spritePath);
+  $sql = 'DELETE FROM sprites WHERE id = :sprite_id';
+  
+  $statement = $pdo->prepare($sql);
+
+  $statement->bindValue(':sprite_id', $_POST['sprite_id']);
+  $statement->execute();
+
+  if(!$statement->rowCount()) {
+    echo "Deletion failed";
+    return;
+  }
+
+  unlink($path);
+}
+
 ?>
