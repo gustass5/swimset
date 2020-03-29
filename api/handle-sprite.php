@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require 'config.php';
-require 'helpers.php';
+require '../core/config.php';
+require '../helpers.php';
 
 if(isset($_POST['download_sprite'])){
     $path = "../uploads/".basename($_POST['path']);

@@ -1,5 +1,7 @@
 <?php
 session_start();
+require 'core/config.php';
+
 function checkLoggedIn($redirect = true){
     
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])){
