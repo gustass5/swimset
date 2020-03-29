@@ -7,11 +7,10 @@ require 'lib/password.php';
 require 'config.php';
 
 if(isset($_POST['login'])){
-
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
-    $sql = 'SELECT id, username, password FROM users WHERE username = :username';
+    $sql = 'SELECT id, username, administrator, password FROM users WHERE username = :username AND deleted=false';
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindValue(':username', $username);
@@ -26,7 +25,9 @@ if(isset($_POST['login'])){
        $validPassword = password_verify($passwordAttempt, $user['password']);
     
         if($validPassword){
+            $userToken = bin2hex(openssl_random_pseudo_bytes(24));
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_token'] = $userToken;
             $_SESSION['logged_in'] = time();
 
             header('Location: home.php');
