@@ -434,8 +434,6 @@ ul {
   position: absolute;
   left: 50%;
   top: 50%;
-  padding: 1rem;
-  background-color: white;
 }
 
 @media (hover: none) {
