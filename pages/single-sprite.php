@@ -18,7 +18,6 @@ if(!$sprite){
     echo 'There is no such sprite';
     exit;
 }
-
 $author = fetchUserData($sprite['user_id']);
 $currentUser = fetchUserData($_SESSION['user_id']);
 ?>

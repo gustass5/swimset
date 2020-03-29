@@ -10,6 +10,10 @@ require "../helpers.php";
  *  Users are not entirely removed because we still want to keep their uploaded assets and display author name
  */
 
+/**
+* You can log in as administrator with username - 'Administrator' password - `admin123`
+*/
+
 checkLoggedIn();
 checkIfAdmin();
 
