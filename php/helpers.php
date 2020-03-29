@@ -5,6 +5,7 @@ function checkLoggedIn($redirect = true){
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])){
         if($redirect){
             header('Location: login.php');
+            exit;
         }else{
             return false;
         }
