@@ -17,7 +17,7 @@ require "../helpers.php";
 checkLoggedIn();
 checkIfAdmin();
 
-$sql = 'SELECT id, username FROM users WHERE deleted=false';
+$sql = 'SELECT id, username FROM users WHERE deleted=false AND administrator != 1';
 
 $statement = $pdo->prepare($sql);
 

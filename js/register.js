@@ -43,8 +43,9 @@ usernameInput.addEventListener("focusout", async () => {
     return;
   }
 
-  const usernameAvailable = await checkIfUsernameExists(usernameInput.value);
-
+  const usernameAvailable = await checkIfUsernameExists(
+    usernameInput.value.trim()
+  );
   if (!usernameAvailable.exist) {
     usernameError.classList.contains("hidden") &&
       usernameError.classList.add("hidden");
@@ -55,7 +56,7 @@ usernameInput.addEventListener("focusout", async () => {
 });
 
 const checkIfUsernameExists = async username => {
-  const url = "../php/usernameMatch.php";
+  const url = "../api/usernameMatch.php";
 
   let formData = new FormData();
   formData.append("compareUsername", username);
