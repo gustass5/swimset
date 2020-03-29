@@ -112,13 +112,12 @@ function addNewUser(){
 
     $passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
-    $sql = 'INSERT INTO users (username, password, role, administrator) VALUES (:username, :password, :role, :administrator)';
+    $sql = 'INSERT INTO users (username, password, role) VALUES (:username, :password, :role)';
     $stmt = $pdo->prepare($sql);
 
     $stmt->bindValue(':username', $username);
     $stmt->bindValue(':password', $passwordHash);
     $stmt->bindValue(':role', $role);
-    $stmt->bindValue(':administrator', 0);
 
     $result = $stmt->execute();
 
