@@ -4,6 +4,9 @@ session_start();
 require '../core/config.php';
 require '../helpers.php';
 
+/**
+ * File download
+ */
 if(isset($_POST['download_sprite'])){
     $path = "../uploads/".basename($_POST['path']);
     
@@ -20,6 +23,9 @@ if(isset($_POST['download_sprite'])){
     }
 }
 
+/**
+ * Sprite deletion handling
+ */
 if(isset($_POST['delete_sprite'])){
     checkLoggedIn();
     $currentUser = fetchUserData($_SESSION['user_id']);
@@ -44,6 +50,9 @@ if(isset($_POST['delete_sprite'])){
 
 }
 
+/**
+ * Complete sprite removal
+ */
 function removeFromDatabase($spritePath){
   Global $pdo;
   $path = "../uploads/".basename($spritePath);

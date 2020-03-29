@@ -102,13 +102,13 @@ function addNewUser(){
     $role = $_POST['role'];
 
     $sql = 'SELECT COUNT(username) AS num FROM users WHERE username = :username';
-    $stmt = $pdo->prepare($sql);
+    $statement = $pdo->prepare($sql);
 
-    $stmt->bindValue(':username', $username);
+    $statement->bindValue(':username', $username);
 
-    $stmt->execute();
+    $statement->execute();
 
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
 
     if($row['num'] > 0){
         throw new Exception('That username already exists!');
@@ -117,13 +117,13 @@ function addNewUser(){
     $passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
     $sql = 'INSERT INTO users (username, password, role) VALUES (:username, :password, :role)';
-    $stmt = $pdo->prepare($sql);
+    $statement = $pdo->prepare($sql);
 
-    $stmt->bindValue(':username', $username);
-    $stmt->bindValue(':password', $passwordHash);
-    $stmt->bindValue(':role', $role);
+    $statement->bindValue(':username', $username);
+    $statement->bindValue(':password', $passwordHash);
+    $statement->bindValue(':role', $role);
 
-    $result = $stmt->execute();
+    $result = $statement->execute();
 
     if($result){
         header('Location: ../index.php');

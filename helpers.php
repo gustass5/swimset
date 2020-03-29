@@ -2,6 +2,9 @@
 session_start();
 require 'core/config.php';
 
+/**
+ * Checks if user is logged in, redirects by default
+ */
 function checkLoggedIn($redirect = true){
     
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])){
@@ -16,6 +19,9 @@ function checkLoggedIn($redirect = true){
     return true;
 }
 
+/**
+ * Fetch necessary data about the user
+ */
 function fetchUserData($userId){
     Global $pdo;
     $sql = 'SELECT username, role, administrator FROM users WHERE id=:user_id';

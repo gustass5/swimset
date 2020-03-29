@@ -2,6 +2,9 @@
 
 require '../core/config.php';
 
+/**
+ * Username comparison endpoint
+ */
 if(isset($_POST['compareUsername'])){
 
     $username = !empty(trim($_POST['compareUsername'])) ? trim($_POST['compareUsername']): null;

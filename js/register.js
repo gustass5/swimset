@@ -6,8 +6,11 @@ const currentPasswordError = document.getElementById("current-password-error");
 const confirmPasswordError = document.getElementById("confirm-password-error");
 const form = document.getElementById("form");
 
+/**
+ * Checks if value is valid after every input, displays error message
+ */
 usernameInput.addEventListener("input", () => {
-  usernameError.innerHTML = checkUsernameValdiation(usernameInput.value.trim());
+  usernameError.innerHTML = checkUsernameValidation(usernameInput.value.trim());
 
   if (usernameError.innerHTML !== "") {
     usernameError.classList.remove("hidden");
@@ -16,7 +19,7 @@ usernameInput.addEventListener("input", () => {
   }
 });
 
-const checkUsernameValdiation = username => {
+const checkUsernameValidation = username => {
   if (/\s/.test(username)) {
     return "Username must not have spaces";
   }
@@ -32,8 +35,11 @@ const checkUsernameValdiation = username => {
   return "";
 };
 
+/**
+ * Checks if username exists after user is done typing it
+ */
 usernameInput.addEventListener("focusout", async () => {
-  if (checkUsernameValdiation(usernameInput.value) !== "") {
+  if (checkUsernameValidation(usernameInput.value) !== "") {
     return;
   }
 
@@ -67,6 +73,9 @@ const checkIfUsernameExists = async username => {
   return response.json();
 };
 
+/**
+ * Checks if value is valid after every input, displays error message
+ */
 currentPasswordInput.addEventListener("input", () => {
   currentPasswordError.innerHTML = checkCurrentPasswordValidation(
     currentPasswordInput.value.trim()
@@ -108,7 +117,7 @@ const checkCurrentPasswordValidation = password => {
   }
 
   if (
-    checkUsernameValdiation(usernameInput.value.trim()) === "" &&
+    checkUsernameValidation(usernameInput.value.trim()) === "" &&
     password.includes(usernameInput.value.trim())
   ) {
     return "Password must not contain username";
@@ -116,6 +125,9 @@ const checkCurrentPasswordValidation = password => {
   return "";
 };
 
+/**
+ * Checks if value is valid after every input, displays error message
+ */
 const checkConfirmPasswordValidation = password => {
   if (password !== currentPasswordInput.value.trim()) {
     return "Passwords do not match";
@@ -128,8 +140,11 @@ const checkConfirmPasswordValidation = password => {
   return "";
 };
 
+/**
+ * Final all input check before form submission
+ */
 form.addEventListener("submit", event => {
-  usernameError.innerHTML = checkUsernameValdiation(usernameInput.value.trim());
+  usernameError.innerHTML = checkUsernameValidation(usernameInput.value.trim());
   currentPasswordError.innerHTML = checkCurrentPasswordValidation(
     currentPasswordInput.value.trim()
   );

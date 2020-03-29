@@ -20,13 +20,13 @@ if(isset($_POST['login'])){
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
     $sql = 'SELECT id, username, administrator, password FROM users WHERE username = :username AND deleted=false';
-    $stmt = $pdo->prepare($sql);
+    $statement = $pdo->prepare($sql);
 
-    $stmt->bindValue(':username', $username);
+    $statement->bindValue(':username', $username);
 
-    $stmt->execute();
+    $statement->execute();
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
 
     if($user === false){
@@ -35,6 +35,9 @@ if(isset($_POST['login'])){
        $validPassword = password_verify($passwordAttempt, $user['password']);
     
         if($validPassword){
+            /**
+             * User token is created for logout.php script 
+             */
             $userToken = bin2hex(openssl_random_pseudo_bytes(24));
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_token'] = $userToken;

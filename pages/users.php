@@ -4,6 +4,12 @@ session_start();
 require "../core/config.php";
 require "../helpers.php";
 
+/**
+ *  This page can be only accessed by an administrator
+ *  He can soft-delete users
+ *  Users are not entirely removed because we still want to keep their uploaded assets and display author name
+ */
+
 checkLoggedIn();
 checkIfAdmin();
 
@@ -22,7 +28,7 @@ if(isset($_POST['delete_user'])){
     $statement->bindValue(':user_id', $_POST['user_id']);
     $statement->execute();
     header('Location: users.php');
-  }
+}
 
 function checkIfAdmin(){
     $user = fetchUserData($_SESSION['user_id']);

@@ -51,6 +51,7 @@ require "helpers.php";
                 Sprites
             </a>
 
+            <!-- Depending if user is logged in or not and what his role is different navigation links are shown. -->
         <?php if(checkLoggedIn(false)){
             $user = fetchUserData($_SESSION['user_id']);?>
             <a class="flex navigation-item" href="pages/uploadSprite.php">

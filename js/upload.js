@@ -3,6 +3,9 @@ const nameInput = document.getElementById("sprite-name");
 const spriteError = document.getElementById("sprite-error");
 const spriteFile = document.getElementById("sprite-upload");
 
+/**
+ * Information about file validation before submit
+ */
 form.addEventListener("submit", event => {
   spriteError.innerHTML = "";
   spriteError.classList.remove("hidden");
