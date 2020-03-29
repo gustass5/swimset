@@ -24,7 +24,7 @@ function checkLoggedIn($redirect = true){
  */
 function fetchUserData($userId){
     Global $pdo;
-    $sql = 'SELECT username, role, administrator FROM users WHERE id=:user_id';
+    $sql = 'SELECT id, username, role, administrator FROM users WHERE id=:user_id';
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':user_id', $userId);
     $statement->execute();
