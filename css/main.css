@@ -37,13 +37,6 @@ ul {
   list-style: none;
 }
 
-.video-header {
-  position: absolute;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-}
-
 .absolute {
   position: absolute;
 }
