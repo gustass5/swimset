@@ -31,13 +31,13 @@ if(isset($_POST['delete_sprite'])){
 
     $sql = 'SELECT path FROM sprites WHERE id = :sprite_id';
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(':sprite_id',  $_POST['sprite_id']);
+    $statement->bindValue(':sprite_id', $_POST['sprite_id']);
     $statement->execute();
 
-    $spritePath = $statement->fetch(FETCH_ASSOC);
+    $spritePath = $statement->fetch(PDO::FETCH_ASSOC);
 
     if($spritePath){
-      removeFromDatabase($spritePath);
+      removeFromDatabase($spritePath['path']);
     }
 
 }
