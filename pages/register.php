@@ -34,6 +34,10 @@ function validateNewUser(){
         $usernameExceptions = 'Username must not have spaces';
     }
 
+    if(strlen($username) > 25){
+        $usernameExceptions = 'Username is too long';
+    }
+
     if($currentPassword === null){
         $currentPasswordExceptions[] = 'Password was not provided';
     }

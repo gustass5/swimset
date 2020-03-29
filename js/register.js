@@ -21,6 +21,10 @@ const checkUsernameValdiation = username => {
     return "Username must not have spaces";
   }
 
+  if (username.length > 25) {
+    return "Username is too long";
+  }
+
   if (username === undefined || username === null || username === "") {
     return "Please enter username";
   }
