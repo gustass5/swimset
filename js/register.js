@@ -123,3 +123,22 @@ const checkConfirmPasswordValidation = password => {
 
   return "";
 };
+
+form.addEventListener("submit", event => {
+  usernameError.innerHTML = checkUsernameValdiation(usernameInput.value.trim());
+  currentPasswordError.innerHTML = checkCurrentPasswordValidation(
+    currentPasswordInput.value.trim()
+  );
+  confirmPasswordError.innerHTML = checkConfirmPasswordValidation(
+    confirmPasswordInput.value.trim()
+  );
+
+  if (
+    usernameError.innerHTML !== "" ||
+    currentPasswordError.innerHTML !== "" ||
+    confirmPasswordError.innerHTML !== ""
+  ) {
+    event.preventDefault();
+    alert("Registration was unsuccessful");
+  }
+});
