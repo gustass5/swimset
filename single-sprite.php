@@ -19,8 +19,8 @@ if(!$sprite){
     exit;
 }
 
-$user = fetchUserData($sprite['user_id']);
-
+$author = fetchUserData($sprite['user_id']);
+$currentUser = fetchUserData($_SESSION['user_id']);
 ?>
 
 <!DOCTYPE html>
@@ -59,31 +59,39 @@ $user = fetchUserData($sprite['user_id']);
         </a>
       </nav>
       <a href="php/login.php">
-        <button class="navigation-item">
+        <div class="navigation-item">
           Login
-        </button>
+        </div>
       </a>
       <a href="php/register.php">
-        <button class="navigation-item">
+        <div class="navigation-item">
           Sign up
-        </button>
+        </div>
       </a>
     </header>
 
     <main class="flex flex-col items-center">
         <header class='flex flex-col items-center justify-center'>
             <div class='text-center text-2xl capitalize mb-2'><?php echo htmlspecialchars($sprite['title'])?></div>
-            <a class='flex justify-center items-center' href="uploads/<?php echo $sprite['path']?>">
-                <img class='bg-white max-w-half h-auto' src="uploads/<?php echo $sprite['path']?>" />
+            <a class='flex justify-center items-center' href="uploads/<?php echo htmlspecialchars($sprite['path'])?>">
+                <img class='bg-white max-w-half h-auto' src="uploads/<?php echo htmlspecialchars($sprite['path'])?>" />
             </a>
         </header>
         <section class='flex flex-col items-center'>
             <form action='./php/download-sprite.php' method='post'>
-                <input type='hidden' name='path' value="<?php echo $sprite['path']?>">
-                <button type='submit' name='download' class='p-1 mb-1'>Download</button>
+                <input type='hidden' name='path' value="<?php echo htmlspecialchars($sprite['path'])?>">
+                <button type='submit' name='download_sprite' class='p-1 mb-1'>Download</button>
             </form>
+            <?php if(checkLoggedIn(false) && ($currentUser['administrator'] === 1 || $sprite['user_id'] === $currentUser['id'])){?>
+              <form action='./php/download-sprite.php' method='post'>
+                  <input type='hidden' name='sprite_id' value="<?php echo htmlspecialchars($sprite['id'])?>">
+                  <input type='hidden' name='author_id' value="<?php echo htmlspecialchars($author['id'])?>">
+                  <button type='submit' name='delete_sprite' class='p-1 mb-1'>Delete</button>
+              </form>
+            <?php }?>
             <div class='mb-1'>
-                Uploaded By: <span><?php echo htmlspecialchars($user['username'])?></span>
+                Uploaded By: <span><?php echo htmlspecialchars($author['username'])?></span>
+                <span>(<?php echo htmlspecialchars($author['role'])?>)</span>
             </div>
         </section>
         <?php if($sprite['description'] !== null){?>
