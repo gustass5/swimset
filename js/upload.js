@@ -19,5 +19,6 @@ form.addEventListener("submit", event => {
     return;
   }
 
+  alert("File upload request was successful");
   spriteError.classList.add("hidden");
 });
