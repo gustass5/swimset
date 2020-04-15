@@ -58,7 +58,7 @@ if(isset($_POST['login'])){
 <html>
     <head>
         <meta charset='UTF-8'>
-        <title>Register</title>
+        <title>Login</title>
         <link rel='stylesheet' href='../css/main.css' />
         <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"

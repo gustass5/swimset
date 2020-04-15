@@ -1,8 +1,9 @@
 <?php
-define('MYSQL_USER', 'root');
-define('MYSQL_PASSWORD', 'gustass5');
-define('MYSQL_HOST', 'localhost');
-define('MYSQL_DATABASE', 'swimset');
+define('MYSQL_USER', 'dbi434358');
+define('MYSQL_PASSWORD', 'Jdy1wgdHkc');
+define('MYSQL_HOST', 'studmysql01.fhict.local');
+define('MYSQL_DATABASE', 'dbi434358');
+
 
 $pdoOptions = array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
